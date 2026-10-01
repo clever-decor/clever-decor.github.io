@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Интер-Аква — сантехника и мебель для ванной комнаты"
+    />
+    <title>Товар — Интер-Аква</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon3.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="announcement">
+      ✦ Подбор сантехники с дизайнером — бесплатно <span>·</span> Доставка по
+      Омску и области
+    </div>
+
+    <header class="header">
+      <a class="logo1" href="index.html">
+        <img
+          class="brand-logo1"
+          src="images/oayTBkRObONLkgVY.svg"
+          alt="Интер-Аква — сантехника для жизни"
+        >
+      </a>
+
+      <nav>
+        <a href="index.html#catalog">Каталог</a>
+        <a href="index.html#about">О компании</a>
+        <a href="index.html#brands">Производители</a>
+        <a href="index.html#contacts">Контакты</a>
+      </nav>
+
+      <div class="phones">
+        <p>тел: +7 913 988 07 21</p>
+        <p>+7 908 310 43 10</p>
+      </div>
+
+      <button class="menu-toggle" aria-label="Меню">☰</button>
+    </header>
+
+    <main>
+      <div id="product-page" class="detail">
+        <div class="detail-image">
+          <img id="product-image" src="" alt="" />
+        </div>
+
+        <div class="detail-copy">
+          <h1><span id="product-name"></span><em>.</em></h1>
+          <p id="product-status">В наличии на складе</p>
+          <div id="product-price" class="price"></div>
+          <p id="product-description"></p>
+
+          <div class="specs">
+            <div>
+              <small>Категория</small>
+              <b id="product-category"></b>
+            </div>
+            <div>
+              <small>Гарантия</small>
+              <b>5 лет</b>
+            </div>
+            <div>
+              <small>Доставка</small>
+              <b>24 часа</b>
+            </div>
+            <div>
+              <small>Артикул</small>
+              <b id="product-articul"></b>
+            </div>
+          </div>
+
+          <a class="button dark" href="index.html#contacts">
+            Уточнить наличие →
+          </a>
+        </div>
+      </div>
+
+      <!-- <div id="product-not-found" class="detail" hidden>
+        <div class="detail-copy">
+          <h1>Товар не найден<em>.</em></h1>
+          <p>Проверьте ссылку или вернитесь в каталог.</p>
+          <a class="button dark" href="catalog.html">Вернуться в каталог →</a>
+        </div>
+      </div> -->
+
+
+
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="logo inverse" href="index.html">
+            <span class="logo-mark">≈</span>
+            <span><b>Интер-Аква</b><small>сантехника для жизни</small></span>
+          </a>
+          <p>Сантехника, которая делает пространство своим.</p>
+        </div>
+
+        <div>
+          <h4>Навигация</h4>
+          <a href="index.html">Главная</a>
+          <a href="catalog.html">Каталог</a>
+          <a href="index.html#about">О компании</a>
+          <a href="index.html#contacts">Контакты</a>
+        </div>
+
+        <div>
+          <h4>Магазин</h4>
+          <p>Омск, ул. 10 лет Октября, 182, корп. 3<br>
+          ТК «Кит-Интерьер», 1-ый этаж</p>
+          <p>Ежедневно, 10:00—20:00</p>
+        </div>
+
+        <div>
+          <h4>Связаться</h4>
+          <p>+7 913 988 07 21</p>
+          <p>+7 908 310 43 10</p>
+          <p>+7 (3812) 95 14 72</p>
+          <p>ars.anatoly@yandex.ru</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Интер-Аква <span>все права защищены</span>
+      </div>
+    </footer>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+      const productId = new URLSearchParams(window.location.search).get("id");
+      const product = products[productId];
+
+      const productPage = document.querySelector("#product-page");
+      const notFound = document.querySelector("#product-not-found");
+
+      if (!product) {
+        notFound.hidden = false;
+      } else {
+        productPage.hidden = false;
+
+        document.title = `${product.name} — Интер-Аква`;
+        document.querySelector("meta[name='description']").content = product.description;
+
+        document.querySelector("#product-image").src = product.image;
+        document.querySelector("#product-image").alt = product.name;
+        document.querySelector("#product-name").textContent = product.name;
+        document.querySelector("#product-category").textContent = product.category;
+        document.querySelector("#product-price").textContent = product.price;
+        document.querySelector("#product-description").textContent = product.description;
+        document.querySelector("#product-articul").textContent =
+          `IA-${productId.toUpperCase()}`;
+      }
+    </script>
+  </body>
+</html>
